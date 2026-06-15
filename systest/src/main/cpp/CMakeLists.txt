@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.30.5)
+cmake_minimum_required(VERSION 4.0.2)
 project(systest)
 
 if(DEPENDENCY_ON_LOCAL_LIBRARY)
