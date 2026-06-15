@@ -15,10 +15,17 @@
 > If you need an Android PLT hook library, try [ByteHook](https://github.com/bytedance/bhook).
 
 
+> ## Android OS Compatibility
+
+**Android `4.1` - `17 QPR1 Beta 4`**
+
+> We will test and support the latest Android OS Beta versions as promptly as possible, and list the supported Android OS versions here.
+
+
 # Features
 
 - Supports armeabi-v7a and arm64-v8a.
-- Supports Android `4.1` - `16` (API level `16` - `36`).
+- Supports Android `4.1` - `17` (API level `16` - `37`).
 - Supports hook and intercept.
 - Supports specifying hook and intercept target locations via "address" or "library name + function name".
 - Automatically completes hook and intercept for "newly loaded ELFs", with optional callbacks after execution.
@@ -1746,7 +1753,7 @@ Note: Please enclose the operation record in double quotes.
         <td rowspan="5"><code>linker/linker64</code></td>
         <td><code>__linker_init</code></td>
         <td><code>__dl___linker_init</code></td>
-        <td><code>[21,36]</code></td>
+        <td><code>[21,37]</code></td>
         <td>✓</td>
         <td>✓</td>
     </tr>
@@ -1771,7 +1778,7 @@ Note: Please enclose the operation record in double quotes.
     </tr>
     <tr>
         <td><code>__dl__ZL29__linker_init_post_relocationR19KernelArgumentBlockR6soinfo</code></td>
-        <td><code>[29,36]</code></td>
+        <td><code>[29,37]</code></td>
         <td>✓</td>
         <td>✓</td>
     </tr>
@@ -1779,7 +1786,7 @@ Note: Please enclose the operation record in double quotes.
         <td rowspan="3"><code>libart.so</code></td>
         <td><code>art::Runtime::Start</code></td>
         <td><code>_ZN3art7Runtime5StartEv</code></td>
-        <td><code>[21,36]</code></td>
+        <td><code>[21,37]</code></td>
         <td>✓</td>
         <td>✓</td>
     </tr>
@@ -1792,7 +1799,7 @@ Note: Please enclose the operation record in double quotes.
     </tr>
     <tr>
         <td><code>_ZN3art7Runtime4InitEONS_18RuntimeArgumentMapE</code></td>
-        <td><code>[24,36]</code></td>
+        <td><code>[24,37]</code></td>
         <td>✓</td>
         <td>✓</td>
     </tr>
@@ -1806,7 +1813,7 @@ Note: Please enclose the operation record in double quotes.
     </tr>
     <tr>
         <td><code>_ZN7android14AndroidRuntime5startEPKcRKNS_6VectorINS_7String8EEEb</code></td>
-        <td><code>[23,36]</code></td>
+        <td><code>[23,37]</code></td>
         <td>✓</td>
         <td>✓</td>
     </tr>
@@ -1825,7 +1832,7 @@ Note: Please enclose the operation record in double quotes.
     </tr>
     <tr>
         <td><code>_ZN7android14AndroidRuntime7startVmEPP7_JavaVMPP7_JNIEnvbb</code></td>
-        <td><code>[30,36]</code></td>
+        <td><code>[30,37]</code></td>
         <td>✓</td>
         <td>✓</td>
     </tr>

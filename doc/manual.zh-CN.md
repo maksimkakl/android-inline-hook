@@ -15,10 +15,17 @@
 > 如果你需要的是 Android PLT hook 库，建议试试 [ByteHook](https://github.com/bytedance/bhook)。
 
 
+## Android OS 兼容性
+
+**Android `4.1` - `17 QPR1 Beta 4`**
+
+> 我们会尽可能及时的测试和支持最新的 Android OS Beta 版本，并且在这里说明已经支持的 Android OS 版本范围。
+
+
 # 特征
 
 - 支持 armeabi-v7a 和 arm64-v8a。
-- 支持 Android `4.1` - `16`（API level `16` - `36`）。
+- 支持 Android `4.1` - `17`（API level `16` - `37`）。
 - 支持 hook 和 intercept。
 - 支持通过“地址”或“库名 + 函数名”指定 hook 和 intercept 的目标位置。
 - 自动完成对“新加载 ELF”的 hook 和 intercept，执行完成后调用可选的回调函数。
@@ -1744,7 +1751,7 @@ void shadowhook_dump_records(int fd, uint32_t item_flags);
         <td rowspan="5"><code>linker/linker64</code></td>
         <td><code>__linker_init</code></td>
         <td><code>__dl___linker_init</code></td>
-        <td><code>[21,36]</code></td>
+        <td><code>[21,37]</code></td>
         <td>✓</td>
         <td>✓</td>
     </tr>
@@ -1769,7 +1776,7 @@ void shadowhook_dump_records(int fd, uint32_t item_flags);
     </tr>
     <tr>
         <td><code>__dl__ZL29__linker_init_post_relocationR19KernelArgumentBlockR6soinfo</code></td>
-        <td><code>[29,36]</code></td>
+        <td><code>[29,37]</code></td>
         <td>✓</td>
         <td>✓</td>
     </tr>
@@ -1777,7 +1784,7 @@ void shadowhook_dump_records(int fd, uint32_t item_flags);
         <td rowspan="3"><code>libart.so</code></td>
         <td><code>art::Runtime::Start</code></td>
         <td><code>_ZN3art7Runtime5StartEv</code></td>
-        <td><code>[21,36]</code></td>
+        <td><code>[21,37]</code></td>
         <td>✓</td>
         <td>✓</td>
     </tr>
@@ -1790,7 +1797,7 @@ void shadowhook_dump_records(int fd, uint32_t item_flags);
     </tr>
     <tr>
         <td><code>_ZN3art7Runtime4InitEONS_18RuntimeArgumentMapE</code></td>
-        <td><code>[24,36]</code></td>
+        <td><code>[24,37]</code></td>
         <td>✓</td>
         <td>✓</td>
     </tr>
@@ -1804,7 +1811,7 @@ void shadowhook_dump_records(int fd, uint32_t item_flags);
     </tr>
     <tr>
         <td><code>_ZN7android14AndroidRuntime5startEPKcRKNS_6VectorINS_7String8EEEb</code></td>
-        <td><code>[23,36]</code></td>
+        <td><code>[23,37]</code></td>
         <td>✓</td>
         <td>✓</td>
     </tr>
@@ -1823,7 +1830,7 @@ void shadowhook_dump_records(int fd, uint32_t item_flags);
     </tr>
     <tr>
         <td><code>_ZN7android14AndroidRuntime7startVmEPP7_JavaVMPP7_JNIEnvbb</code></td>
-        <td><code>[30,36]</code></td>
+        <td><code>[30,37]</code></td>
         <td>✓</td>
         <td>✓</td>
     </tr>

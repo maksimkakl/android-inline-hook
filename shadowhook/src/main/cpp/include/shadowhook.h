@@ -1,4 +1,4 @@
-// Copyright (c) 2021-2025 ByteDance Inc.
+// Copyright (c) 2021-2026 ByteDance Inc.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -35,7 +35,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-#define SHADOWHOOK_VERSION "2.0.1-rc.15"
+#define SHADOWHOOK_VERSION "2.0.1"
 
 #define SHADOWHOOK_ERRNO_OK                     0
 #define SHADOWHOOK_ERRNO_PENDING                1

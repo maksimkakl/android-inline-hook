@@ -1,8 +1,8 @@
 # **shadowhook**
 
 ![](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)
-![](https://img.shields.io/badge/release-2.0.0-red.svg?style=flat)
-![](https://img.shields.io/badge/Android-4.1%20--%2016-blue.svg?style=flat)
+![](https://img.shields.io/badge/release-2.0.1-red.svg?style=flat)
+![](https://img.shields.io/badge/Android-4.1%20--%2017-blue.svg?style=flat)
 ![](https://img.shields.io/badge/arch-armeabi--v7a%20%7C%20arm64--v8a-blue.svg?style=flat)
 
 [English](README.md)
@@ -17,10 +17,17 @@
 > 如果你需要的是 Android PLT hook 库，建议试试 [ByteHook](https://github.com/bytedance/bhook)。
 
 
+## Android OS 兼容性
+
+**Android `4.1` - `17 QPR1 Beta 4`**
+
+> 我们会尽可能及时的测试和支持最新的 Android OS Beta 版本，并且在这里说明已经支持的 Android OS 版本范围。
+
+
 ## 特征
 
 - 支持 armeabi-v7a 和 arm64-v8a。
-- 支持 Android `4.1` - `16`（API level `16` - `36`）。
+- 支持 Android `4.1` - `17`（API level `16` - `37`）。
 - 支持 hook 和 intercept。
 - 支持通过“地址”或“库名 + 函数名”指定 hook 和 intercept 的目标位置。
 - 自动完成对“新加载 ELF”的 hook 和 intercept，执行完成后调用可选的回调函数。

@@ -1,8 +1,8 @@
 # **shadowhook**
 
 ![](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)
-![](https://img.shields.io/badge/release-2.0.0-red.svg?style=flat)
-![](https://img.shields.io/badge/Android-4.1%20--%2016-blue.svg?style=flat)
+![](https://img.shields.io/badge/release-2.0.1-red.svg?style=flat)
+![](https://img.shields.io/badge/Android-4.1%20--%2017-blue.svg?style=flat)
 ![](https://img.shields.io/badge/arch-armeabi--v7a%20%7C%20arm64--v8a-blue.svg?style=flat)
 
 [简体中文](README.zh-CN.md)
@@ -17,10 +17,17 @@
 > If you need an Android PLT hook library, try [ByteHook](https://github.com/bytedance/bhook).
 
 
+> ## Android OS Compatibility
+
+**Android `4.1` - `17 QPR1 Beta 4`**
+
+> We will test and support the latest Android OS Beta versions as promptly as possible, and list the supported Android OS versions here.
+
+
 ## Features
 
 - Supports armeabi-v7a and arm64-v8a.
-- Supports Android `4.1` - `16` (API level `16` - `36`).
+- Supports Android `4.1` - `17` (API level `16` - `37`).
 - Supports hook and intercept.
 - Supports specifying hook and intercept target locations via "address" or "library name + function name".
 - Automatically completes hook and intercept for "newly loaded ELFs", with optional callbacks after execution.

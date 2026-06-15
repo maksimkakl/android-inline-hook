@@ -83,7 +83,7 @@ typedef struct {
 // linker
 static sh_elf_useless_symbol_t sh_elf_useless_linker[] = {
     // __linker_init
-    {"__dl___linker_init", 21, 36, false, true},
+    {"__dl___linker_init", 21, 37, false, true},
 // __linker_init_post_relocation
 #if defined(__arm__)
     {"__dl__ZL29__linker_init_post_relocationR19KernelArgumentBlockj", 21, 26, false, true},
@@ -91,26 +91,26 @@ static sh_elf_useless_symbol_t sh_elf_useless_linker[] = {
     {"__dl__ZL29__linker_init_post_relocationR19KernelArgumentBlocky", 21, 26, false, true},
 #endif
     {"__dl__ZL29__linker_init_post_relocationR19KernelArgumentBlock", 27, 28, false, true},
-    {"__dl__ZL29__linker_init_post_relocationR19KernelArgumentBlockR6soinfo", 29, 36, false, true}
+    {"__dl__ZL29__linker_init_post_relocationR19KernelArgumentBlockR6soinfo", 29, 37, false, true}
 };
 // libart.so
 static sh_elf_useless_symbol_t sh_elf_useless_libart[] = {
     // art::Runtime::Start
-    {"_ZN3art7Runtime5StartEv", 21, 36, true, true},
+    {"_ZN3art7Runtime5StartEv", 21, 37, true, true},
     // art::Runtime::Init
     {"_ZN3art7Runtime4InitERKNSt3__16vectorINS1_4pairINS1_12basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEEPKvEENS7_ISC_EEEEb",
      21, 23, true, true},
-    {"_ZN3art7Runtime4InitEONS_18RuntimeArgumentMapE", 24, 36, true, true}
+    {"_ZN3art7Runtime4InitEONS_18RuntimeArgumentMapE", 24, 37, true, true}
 };
 // libandroid_runtime.so
 static sh_elf_useless_symbol_t sh_elf_useless_libandroid_runtime[] = {
     // android::AndroidRuntime::start
     {"_ZN7android14AndroidRuntime5startEPKcRKNS_6VectorINS_7String8EEE", 21, 22, true, true},
-    {"_ZN7android14AndroidRuntime5startEPKcRKNS_6VectorINS_7String8EEEb", 23, 36, true, true},
+    {"_ZN7android14AndroidRuntime5startEPKcRKNS_6VectorINS_7String8EEEb", 23, 37, true, true},
     // android::AndroidRuntime::startVm
     {"_ZN7android14AndroidRuntime7startVmEPP7_JavaVMPP7_JNIEnv", 21, 22, true, true},
     {"_ZN7android14AndroidRuntime7startVmEPP7_JavaVMPP7_JNIEnvb", 23, 29, true, true},
-    {"_ZN7android14AndroidRuntime7startVmEPP7_JavaVMPP7_JNIEnvbb", 30, 36, true, true}
+    {"_ZN7android14AndroidRuntime7startVmEPP7_JavaVMPP7_JNIEnvbb", 30, 37, true, true}
 };
 static sh_elf_useless_t sh_elf_useless[] = {
 #if defined(__arm__)
