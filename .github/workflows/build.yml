@@ -1,0 +1,40 @@
+name: Build Static Libs
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set up JDK
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'zulu'
+        java-version: '17'
+
+    - name: Setup Android NDK
+      uses: android-actions/setup-android@v3
+
+    - name: Build with Gradle
+      run: |
+        chmod +x ./gradlew
+        ./gradlew :shadowhook:assembleRelease
+
+    - name: Find and Copy Static Libs
+      run: |
+        mkdir -p output_libs
+        find shadowhook/build/intermediates/cxx/ -name "*.a" -exec cp {} output_libs/ \;
+        ls -la output_libs
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: shadowhook-static-libs
+        path: output_libs/
