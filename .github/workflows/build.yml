@@ -30,7 +30,7 @@ jobs:
     - name: Find and Copy Static Libs
       run: |
         mkdir -p output_libs
-        find shadowhook/build/intermediates/cxx/ -name "*.a" -exec cp {} output_libs/ \;
+        find shadowhook/build/intermediates/cxx/ -path "*/arm64-v8a/*.a" -exec cp {} output_libs/ \;
         ls -la output_libs
 
     - name: Upload Artifacts
