@@ -538,6 +538,14 @@ static int sh_linker_hook_call_ctors_dtors(sh_addr_info_t *call_ctors_addr_info,
   sh_recorder_trace_t trace_dtors = SH_RECORDER_TRACE_INITIALIZER;
   int api_level = sh_util_get_api_level();
 
+  // Гасим неиспользуемые макросы и переменные, чтобы избежать ошибок [-Wunused-macros] и [-Wunused-variable]
+  (void)SH_LINKER_BASENAME;
+  (void)SH_LINKER_SHADOWHOOK_BASE_NAME;
+  (void)SH_LINKER_SYM_CALL_CONSTRUCTORS_L;
+  (void)SH_LINKER_SYM_CALL_DESTRUCTORS_L;
+  (void)SH_LINKER_SYM_CALL_CONSTRUCTORS_M;
+  (void)SH_LINKER_SYM_CALL_DESTRUCTORS_M;
+
 #if !SH_LINKER_HOOK_WITH_DL_MUTEX
   (void)g_dl_mutex;
 #endif
@@ -566,6 +574,8 @@ static int sh_linker_hook_call_ctors_dtors(sh_addr_info_t *call_ctors_addr_info,
   if (__predict_false(0 != r_hook_dtors)) {
 #if SH_LINKER_HOOK_WITH_DL_MUTEX
     pthread_mutex_unlock(g_dl_mutex);
+#endif
+    goto end;
   }
 
 #if SH_LINKER_HOOK_WITH_DL_MUTEX
@@ -576,7 +586,6 @@ static int sh_linker_hook_call_ctors_dtors(sh_addr_info_t *call_ctors_addr_info,
   SH_LOG_INFO("linker: Мягкий обход dlopen(nothing.so) активирован.");
   
   // Принудительно выставляем стандартные смещения структуры soinfo для Android 14-16 (arm64-v8a)
-  // Это позволит ядру ShadowHook правильно парсить адреса библиотек в памяти
   sh_linker_soinfo_offset_load_bias = 0;
   sh_linker_soinfo_offset_name = sizeof(uintptr_t);
   sh_linker_soinfo_offset_phdr = sizeof(uintptr_t) * 2;
@@ -586,28 +595,25 @@ static int sh_linker_hook_call_ctors_dtors(sh_addr_info_t *call_ctors_addr_info,
   // Взводим внутренние флаги успешного сканирования структуры
   __atomic_store_n(&sh_linker_soinfo_offset_scan_ok, true, __ATOMIC_RELEASE);
 
-  // Полностью вырезаем паникующий dlopen("libshadowhook_nothing.so")
-  // Движок сразу переходит в статус успешного завершения
-
-  // OK
+  // OK - Обходим dlopen("libshadowhook_nothing.so") без паники
   r = 0;
 
 end:
   // do records
   if (INT_MAX != r_hook_ctors)
     sh_recorder_add_op(r_hook_ctors, SH_RECORDER_OP_HOOK_INVISIBLE_SYM_ADDR,
-                       (uintptr_t)call_ctors_addr_info->dli_saddr, SH_LINKER_BASENAME,
-                       api_level >= __ANDROID_API_M__ ? SH_LINKER_SYM_CALL_CONSTRUCTORS_M
-                                                      : SH_LINKER_SYM_CALL_CONSTRUCTORS_L,
+                       (uintptr_t)call_ctors_addr_info->dli_saddr, "linker64",
+                       api_level >= 23 ? "__dl__ZN6soinfo17call_constructorsEv"
+                                       : "__dl__ZN6soinfo16CallConstructorsEv",
                        (uintptr_t)shadowhook_proxy_android_linker_soinfo_call_constructors,
-                       SHADOWHOOK_HOOK_DEFAULT, UINTPTR_MAX, 0, SH_LINKER_SHADOWHOOK_BASE_NAME, &trace_ctors);
+                       SHADOWHOOK_HOOK_DEFAULT, UINTPTR_MAX, 0, "libshadowhook.so", &trace_ctors);
   if (INT_MAX != r_hook_dtors)
     sh_recorder_add_op(
         r_hook_dtors, SH_RECORDER_OP_HOOK_INVISIBLE_SYM_ADDR, (uintptr_t)call_dtors_addr_info->dli_saddr,
-        SH_LINKER_BASENAME,
-        api_level >= __ANDROID_API_M__ ? SH_LINKER_SYM_CALL_DESTRUCTORS_M : SH_LINKER_SYM_CALL_DESTRUCTORS_L,
+        "linker64",
+        api_level >= 23 ? "__dl__ZN6soinfo16call_destructorsEv" : "__dl__ZN6soinfo15CallDestructorsEv",
         (uintptr_t)shadowhook_proxy_android_linker_soinfo_call_destructors, SHADOWHOOK_HOOK_DEFAULT,
-        UINTPTR_MAX, 0, SH_LINKER_SHADOWHOOK_BASE_NAME, &trace_dtors);
+        UINTPTR_MAX, 0, "libshadowhook.so", &trace_dtors);
 
   SH_LOG_INFO("linker: hook ctors and dtors %s", 0 == r ? "OK" : "FAILED");
   return r;
